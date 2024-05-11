@@ -109,5 +109,5 @@ function copyExample() {
     input.select();
     document.execCommand('copy');
     document.body.removeChild(input);
-    alert('Example copied: ' + exampleValue);
+    alert('Example copied: ' + exampleValue + '\n\nJust paste it.');
 }
