@@ -6,25 +6,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Replacement Simulation</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Style for the hidden popup */
+        #popupContainer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+
+        #popup {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        /* Style for the close button */
+        .closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 28px;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Hidden popup div -->
+    <div id="popupContainer" onclick="closePopup(event)">
+        <div id="popup">
+            <span class="closeBtn" onclick="togglePopup()">&times;</span>
+            <h2>Page Replacement Algorithm Explanation</h2>
+            <p>
+                <b>First In First Out (FIFO):</b>
+                In the FIFO algorithm, pages are replaced in the order they were brought into memory. It operates like a
+                queue, where the oldest page is at the front and the newest page is added to the back. When a page needs
+                to be replaced and the memory is full, the oldest page at the front of the queue is removed, making space
+                for the new page. Then, the new page is added to the back of the queue, becoming the newest page in memory.
+                <br><br>
+                <b>Least Recently Used (LRU):</b>
+                The LRU algorithm tracks the order in which pages are used. When a page is referenced, it is moved to
+                the front of the queue, indicating it was the most recently used. If a page needs to be replaced and the
+                memory is full, the page at the back of the queue (the least recently used page) is removed to make room for
+                the new page. By constantly updating the order based on page usage, LRU ensures that the pages most likely
+                to be used again stay in memory.
+                <br><br>
+                <b>Optimal Page Replacement (OPT):</b>
+                OPT is an idealized algorithm that looks ahead to determine which page will be least likely to be used
+                in the future. When a page fault occurs, OPT examines the remaining page references in the sequence to
+                identify the page that won't be needed for the longest time. While OPT theoretically provides the lowest
+                page-fault rate, it is not practical because it requires knowledge of future page accesses, which is typically not
+                available in real-world scenarios.
+            </p>
+        </div>
+    </div>
+
     <div class="container">
         <h1>Page Replacement Simulation</h1>
         <label for="num-frames">Number of Memory Frames:</label>
         <input type="number" id="num-frames" min="1" value="4">
         <label for="page-sequence">Page Reference Sequence:</label>
-        <input type="text" id="page-sequence" placeholder="Enter page references separated by spaces" >
+        <input type="text" id="page-sequence" placeholder="Enter page references separated by spaces">
         <button onclick="simulateFIFO()">Simulate FIFO</button>
         <button onclick="simulateLRU()">Simulate LRU</button>
         <button onclick="simulateOPT()">Simulate OPT</button>
         <span onclick="copyExample()" id="cpy">Copy an Example</span>
         <div id="output"></div>
-        
-        <div class="credit"><p>Design and created by <a href="https://www.linkedin.com/in/khirul-islam-212a70251/" target="_blank
-            ">Khirul Islam</a>.</p></div>
+
+        <div class="credit">
+            <p>Design and created by <a href="https://www.linkedin.com/in/khirul-islam-212a70251/" target="_blank
+            ">Khirul Islam</a>. | <a onclick="togglePopup()">How it works?</a></p>
+        </div>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Function to toggle the visibility of the popup
+        function togglePopup() {
+            var popupContainer = document.getElementById("popupContainer");
+            popupContainer.style.display = (popupContainer.style.display === "none" || popupContainer.style.display === "") ? "block" : "none";
+        }
+        // Function to close the popup when clicking on the background
+        function closePopup(event) {
+            if (event.target.id === "popupContainer") {
+                var popupContainer = document.getElementById("popupContainer");
+                popupContainer.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
