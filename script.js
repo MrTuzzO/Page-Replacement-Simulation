@@ -22,8 +22,10 @@ function simulateFIFO() {
         // Display output
         outputText += `Page ${currentPage}: Memory frames [${memoryFrames.join(', ')}]${pageFault ? '' : ' - Hit'}<br>`;
     }
+    outputText += `<hr>`;
     outputText += `<br>Total Hit: ${pageSequence.length - pageFaults}`;
     outputText += `<br>Total Miss: ${pageFaults}`;
+    outputText += `<br>Hit Ratio: ${pageSequence.length - pageFaults}`+'/'+`${pageSequence.length}`;
     document.getElementById('output').innerHTML = outputText;
 }
 
@@ -56,8 +58,10 @@ function simulateLRU() {
         // Display output
         outputText += `Page ${currentPage}: Memory frames [${memoryFrames.join(', ')}]${pageFault ? '' : ' - Hit'}<br>`;
     }
+    outputText += `<hr>`;
     outputText += `<br>Total Hit: ${pageSequence.length - pageFaults}`;
     outputText += `<br>Total Miss: ${pageFaults}`;
+    outputText += `<br>Hit Ratio: ${pageSequence.length - pageFaults}`+'/'+`${pageSequence.length}`;
     document.getElementById('output').innerHTML = outputText;
 }
 
@@ -95,8 +99,10 @@ function simulateOPT() {
         // Display output
         outputText += `Page ${currentPage}: Memory frames [${memoryFrames.join(', ')}]${pageFault ? '' : ' - Hit'}<br>`;
     }
+    outputText += `<hr>`;
     outputText += `<br>Total Hit: ${pageSequence.length - pageFaults}`;
     outputText += `<br>Total Miss: ${pageFaults}`;
+    outputText += `<br>Hit Ratio: ${pageSequence.length - pageFaults}`+'/'+`${pageSequence.length}`;
     document.getElementById('output').innerHTML = outputText;
 }
 
