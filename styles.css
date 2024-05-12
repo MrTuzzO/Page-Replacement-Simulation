@@ -86,3 +86,14 @@ button:hover {
 .memory-table th {
     background-color: #f2f2f2;
 }
+/* Media query for mobile view */
+@media (max-width: 560px) {
+    .container {
+        margin: 10px auto;
+    }
+    button {
+        display: block;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
